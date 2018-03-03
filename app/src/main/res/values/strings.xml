@@ -10,4 +10,5 @@
     <string name="error_connection">Erro de conexão</string>
     <string name="error_request">Requisição inválida</string>
     <string name="label_error_invalid_response">Resposta inválida</string>
+    <string name="message_wait">Aguarde</string>
 </resources>

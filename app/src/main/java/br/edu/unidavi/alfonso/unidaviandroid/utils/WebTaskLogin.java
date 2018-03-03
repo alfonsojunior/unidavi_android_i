@@ -38,6 +38,8 @@ public class WebTaskLogin extends WebTaskBase {
             user.setUsuario(username);
             String photoUrl = responseAsJSON.getString("imagem");
             user.setImagemURL(photoUrl);
+            String token = responseAsJSON.getString("token");
+            user.setToken(token);
             EventBus.getDefault().post(user);
 
         } catch (JSONException e) {
@@ -52,6 +54,7 @@ public class WebTaskLogin extends WebTaskBase {
         user.setNome(userAsJSON.getString("nome"));
         user.setUsuario(userAsJSON.getString("usuario"));
         user.setImagemURL(userAsJSON.getString("imagem"));
+        user.setToken(userAsJSON.getString("token"));
         return user;
     }
 

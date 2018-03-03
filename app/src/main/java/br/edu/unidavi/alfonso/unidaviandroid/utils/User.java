@@ -9,6 +9,7 @@ public class User {
     private String nome = "";
     private String usuario = "";
     private String imagemURL = "";
+    private String token = "";
 
 
     public String getNome() {
@@ -33,5 +34,13 @@ public class User {
 
     public void setImagemURL(String imagemURL) {
         this.imagemURL = imagemURL;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

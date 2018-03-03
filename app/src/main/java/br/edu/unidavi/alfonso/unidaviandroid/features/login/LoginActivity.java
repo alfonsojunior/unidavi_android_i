@@ -1,9 +1,11 @@
 package br.edu.unidavi.alfonso.unidaviandroid.features.login;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +31,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private Session session = new Session();
     private WebTaskLogin mAuthTask = null;
+    private ProgressDialog progressDialog = null;
+    private View formLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +58,8 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }
         );
+
+        formLogin = findViewById(R.id.formulario);
 
     }
 
@@ -81,6 +87,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText senha = (EditText) findViewById(R.id.senha);
         String senhaValue = senha.getText().toString();
 
+        showDialog();
         mAuthTask = new WebTaskLogin(this, loginValue, senhaValue);
         mAuthTask.execute();
 
@@ -117,10 +124,12 @@ public class LoginActivity extends AppCompatActivity {
     @Subscribe
     public void onEvent(User user){
         mAuthTask = null;
+        hideDialog();
 
         session.saveEmailInSession(this, user.getUsuario());
         session.saveInSession(this, "sessao", "nome", user.getNome());
         session.saveInSession(this, "sessao", "imagem", user.getImagemURL());
+        session.saveInSession(this, "sessao", "token", user.getToken());
         goToHome();
 
     }
@@ -128,8 +137,26 @@ public class LoginActivity extends AppCompatActivity {
     @Subscribe
     public void onEvent(Error error){
         mAuthTask = null;
+        hideDialog();
 
-        Toast toast = Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT);
-        toast.show();
+        Snackbar.make(formLogin, "error.getMessage()", Snackbar.LENGTH_LONG).show();
+
+        //Toast toast = Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT);
+        //toast.show();
+    }
+
+    public void showDialog() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage(getString(R.string.message_wait));
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setProgress(0);
+        progressDialog.show();
+    }
+
+    public void hideDialog() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.cancel();
+        }
     }
 }
