@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">UnidaviAndroid</string>
+    <string name="hello_text">Hello World!</string>
+    <string name="meu_nome">Alfonso Noerenberg Junior</string>
+    <string name="descricao">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pharetra maximus elementum. Morbi dapibus tellus ante, non faucibus nunc tempus sit amet. Etiam sit amet efficitur massa, sed scelerisque ex. Nullam posuere laoreet quam, vitae gravida nunc mattis vel. Mauris eu blandit orci. Proin eget sapien imperdiet tortor vulputate feugiat porttitor sollicitudin massa. Cras non bibendum elit, vitae fermentum tellus. In risus est, ultricies at nunc nec, pharetra dignissim odio. Sed lacinia elementum convallis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</string>
+    <string name="unidavi">UNIDAVI</string>
+    <string name="esqueci_a_senha">Esqueci a senha</string>
+    <string name="login">Login</string>
+    <string name="senha">Senha</string>
+    <string name="error_connection">Erro de conexão</string>
+    <string name="error_request">Requisição inválida</string>
+    <string name="label_error_invalid_response">Resposta inválida</string>
+</resources>
